@@ -1,0 +1,114 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f8f8f8;
+  color: #333;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: ffffff;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #FF6B35;
+  text-shadow: 10px 10px 12px rgba(10, 10, 10, 0.5);
+}
+
+
+.nav-links a {
+  margin-left: 2.5rem;
+  text-decoration: none;
+  color: #0d0a0a;
+  font-size: 1.2rem;
+  font-weight: 800;
+  transition: color 0.1s;
+
+}
+
+.nav-links a:hover {
+  color: #FF6B35;
+}
+
+.pricing {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.pricing h2 {
+  font-size: 2.5rem;
+  color: #FF6B35;
+  margin-bottom: 2rem;
+}
+
+.plan-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.plan {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 280px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.plan:hover {
+  transform: translateY(-5px);
+}
+
+.featured {
+  border: 2px solid #FF6B35;
+}
+
+.plan h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.price {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #FF6B35;
+}
+
+.plan ul {
+  list-style: none;
+  text-align: left;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.plan ul li {
+  margin-bottom: 0.5rem;
+}
+
+.btn {
+  display: inline-block;
+  background: #FF6B35;
+  color: white;
+  padding: 0.7rem 1.5rem;
+  border-radius: 30px;
+  text-decoration: none;
+  margin-top: 1rem;
+}

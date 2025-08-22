@@ -1,0 +1,166 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HealthyBox – Order</title>
+  <link rel="stylesheet" href="css/order.css" />
+</head>
+<body>
+
+<header class="navbar">
+  <div class="logo">HealthyBox</div>
+  <nav class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="plans.html">Plans</a>
+    <a href="order.html">Order</a>
+    <a href="track.html">Track</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="order-section">
+  <h2>Place Your Order</h2>
+  <form class="order-form">
+    <input type="text" placeholder="Full Name" required />
+    <input type="tel" placeholder="Phone Number" required />
+    <input type="text" placeholder="Delivery Address" required />
+    <select required>
+      <option value="">Select Plan</option>
+      <option value="daily">Daily Plan</option>
+      <option value="weekly">Weekly Plan</option>
+      <option value="monthly">Monthly Plan</option>
+    </select>
+    <textarea placeholder="Any special instructions?" rows="4"></textarea>
+    <button type="submit">Submit Order</button>
+  </form>
+</section>
+
+
+
+<form class="order-form" action="submit_order.php" method="POST">
+  <input type="text" name="full_name" placeholder="Full Name" required />
+  <input type="tel" name="phone" placeholder="Phone Number" required />
+  <input type="text" name="address" placeholder="Delivery Address" required />
+  <select name="plan" required>
+    <option value="">Select Plan</option>
+    <option value="daily">Daily Plan</option>
+    <option value="weekly">Weekly Plan</option>
+    <option value="monthly">Monthly Plan</option>
+  </select>
+  <textarea name="instructions" placeholder="Any special instructions?" rows="4"></textarea>
+  <button type="submit">Submit Order</button>
+</form> -->
+
+
+ <!-- </body>
+</html>  -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Place Your Order – HealthyBox</title>
+  <link rel="stylesheet" href="css/order.css" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f9f9f9;
+      padding: 40px;
+    }
+    h2 {
+      text-align: center;
+      color: #ff6b35;
+    }
+    form {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, select, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin: 12px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+    button {
+      background-color: #ff6b35;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #e55a25;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Place Your HealthyBox Order</h2>
+
+  <form id="orderForm">
+    <input type="text" id="name" placeholder="Your Name" required />
+    <input type="text" id="phone" placeholder="Phone Number" required />
+    <textarea id="address" placeholder="Delivery Address" required></textarea>
+
+    <select id="mealSelect" required>
+      <option value="">Select a Meal</option>
+    </select>
+
+    <button type="submit">Place Order</button>
+  </form>
+
+  <script>
+    // 🔄 Load meals in dropdown
+    fetch("http://localhost/healthybox/backend/meals/getMeals.php")
+      .then(res => res.json())
+      .then(data => {
+        const mealSelect = document.getElementById("mealSelect");
+        data.data.forEach(meal => {
+          const option = document.createElement("option");
+          option.value = meal.id;
+          option.textContent = meal.name + " – ₹" + meal.price;
+          mealSelect.appendChild(option);
+        });
+      });
+
+    // 🚀 Handle form submission
+    document.getElementById("orderForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const phone = document.getElementById("phone").value;
+      const address = document.getElementById("address").value;
+      const meal_id = document.getElementById("mealSelect").value;
+
+      fetch("http://localhost/healthybox/backend/orders/placeOrder.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, phone, address, meal_id })
+      })
+      .then(res => res.json())
+      .then(data => {
+        alert(data.message);
+        if (data.status === "success") {
+          document.getElementById("orderForm").reset();
+        }
+      })
+      .catch(err => {
+        console.error("Error placing order:", err);
+        alert("Something went wrong!");
+      });
+    });
+  </script>
+
+</body>
+</html>
+

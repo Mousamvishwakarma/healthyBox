@@ -1,0 +1,48 @@
+.track-section {
+  padding: 3rem 2rem;
+  text-align: center;
+  background-color: #f0f0f0;
+}
+
+.track-section input {
+  padding: 10px 15px;
+  width: 280px;
+  border: 2px solid #FF6B35;
+  border-radius: 6px;
+  margin-top: 1rem;
+  font-size: 16px;
+}
+
+.track-section button {
+  padding: 10px 20px;
+  background: #FF6B35;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.status-box {
+  display: none;
+  margin-top: 2rem;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.1);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 15px;
+  background: #ddd;
+  border-radius: 10px;
+  margin: 1rem 0;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #4CAF50;
+  border-radius: 10px;
+}

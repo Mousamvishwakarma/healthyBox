@@ -1,0 +1,82 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background-color: #fffefc;
+  color: #333;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: ffffff;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #FF6B35;
+  text-shadow: 10px 10px 12px rgba(10, 10, 10, 0.5);
+}
+
+
+.nav-links a {
+  margin-left: 2.5rem;
+  text-decoration: none;
+  color: #0d0a0a;
+  font-size: 1.2rem;
+  font-weight: 800;
+  transition: color 0.1s;
+
+}
+
+.nav-links a:hover {
+  color: #FF6B35;
+}
+
+.order-section {
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.order-section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #FF6B35;
+}
+
+.order-form input,
+.order-form textarea,
+.order-form select {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.order-form button {
+  width: 100%;
+  padding: 1rem;
+  background: #FF6B35;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.order-form button:hover {
+  background: #e05320;
+}

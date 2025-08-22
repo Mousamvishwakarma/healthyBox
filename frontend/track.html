@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Track Your Order – HealthyBox</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f4f4f4;
+      padding: 40px;
+    }
+    h2 {
+      text-align: center;
+      color: #ff6b35;
+    }
+    form {
+      max-width: 400px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    input, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 12px;
+      font-size: 16px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #ff6b35;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #e55a25;
+    }
+    table {
+      width: 100%;
+      margin-top: 30px;
+      border-collapse: collapse;
+      background: white;
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+    th {
+      background: #ff6b35;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Track Your Order</h2>
+
+  <form id="trackForm">
+    <input type="text" id="phone" placeholder="Enter your phone number" required />
+    <button type="submit">Check Orders</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    document.getElementById("trackForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const phone = document.getElementById("phone").value;
+
+      fetch("http://localhost/healthybox-backend/orders/getOrders.php", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone })
+      })
+      .then(res => res.json())
+      .then(data => {
+        const resultDiv = document.getElementById("result");
+        if (data.status === "success" && data.data.length > 0) {
+          let table = `<table>
+            <tr><th>Meal</th><th>Address</th><th>Status</th><th>Ordered At</th></tr>`;
+          data.data.forEach(order => {
+            table += `<tr>
+              <td>${order.meal_name}</td>
+              <td>${order.address}</td>
+              <td>${order.status}</td>
+              <td>${order.order_time}</td>
+            </tr>`;
+          });
+          table += `</table>`;
+          resultDiv.innerHTML = table;
+        } else {
+          resultDiv.innerHTML = `<p style="color:red;text-align:center;">No orders found for this number.</p>`;
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

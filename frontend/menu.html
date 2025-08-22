@@ -1,0 +1,325 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HealthyBox – Menu</title>
+  <link rel="stylesheet" href="css/menu.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <header class="navbar">
+    <div class="logo">HealthyBox</div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="plans.html">Plans</a>
+      <a href="order.html">Order</a>
+      <a href="track.html">Track</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+    <section class="menu">
+    <h2 class="section-title">Our Healthy Meals</h2>
+    <div class="menu-grid">
+      <div class="card">
+        <img src="images/tiffin1.jpg" alt="Tiffin Meal 1">
+        <h3>Veg Standard Box</h3>
+        <p>Chapati, Rice, Dal, Veg Curry, Salad</p>
+        <span>₹99</span>
+        <a href="order.html" class="order-btn">Order Now</a>
+      </div>
+      <div class="card">
+        <img src="images/tiffin2.jpg" alt="Tiffin Meal 2">
+        <h3>Healthy Mini Box</h3>
+        <p>2 Chapati, Mix Veg, Curd, Salad</p>
+        <span>₹79</span>
+        <a href="order.html" class="order-btn">Order Now</a>
+      </div>
+      <div class="card">
+        <img src="images/tiffin3.jpg" alt="Tiffin Meal 3">
+        <h3>Premium Lunch</h3>
+        <p>Chapati, Rice, Paneer, Sweet, Raita</p>
+        <span>₹129</span>
+        <a href="order.html" class="order-btn">Order Now</a>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <section class="menu-section">
+    <h2 class="section-title">Our Delicious Menu</h2>
+    <div class="menu-container">
+            <div class="menu-card">
+        <img src="images/rajma-chawal.jpg" alt="Rajma Chawal">
+        <h3>Rajma Chawal</h3>
+        <p>Authentic Punjabi-style rajma with steamed rice.</p>
+        <a href="order.html" class="order-btn">Order Now</a>
+      </div>
+
+            <div class="menu-card">
+        <img src="images/kadhi-rice.jpg" alt="Kadhi Rice">
+        <h3>Kadhi Rice</h3>
+        <p>Light, tangy kadhi paired with fluffy rice.</p>
+        <a href="order.html" class="order-btn">Order Now</a>
+
+      </div>
+
+            <div class="menu-card">
+        <img src="images/chole-puri.jpg" alt="Chole Puri">
+        <h3>Chole Puri</h3>
+        <p>Spicy chickpeas with crispy puffed puris.</p>
+        <a href="order.html" class="order-btn">Order Now</a>
+
+      </div>
+
+            <div class="menu-card">
+        <img src="images/palak-paneer.jpg" alt="Palak Paneer">
+        <h3>Palak Paneer</h3>
+        <p>Cottage cheese cooked in spinach gravy.</p>
+        <a href="order.html" class="order-btn">Order Now</a>
+
+      </div>
+
+            <div class="menu-card">
+        <img src="images/mixed-veg.jpg" alt="Mixed Veg">
+        <h3>Mixed Veg</h3>
+        <p>A healthy mix of seasonal vegetables in gravy.</p>
+        <a href="order.html" class="order-btn">Order Now</a>
+
+      </div>
+
+            <div class="menu-card">
+        <img src="images/dal-fry.jpg" alt="Dal Fry">
+        <h3>Dal Fry</h3>
+        <p>Yellow lentils tempered with garlic and spices.</p>
+        <a href="order.html" class="order-btn">Order Now</a>
+
+      </div>
+
+            <div class="menu-card">
+        <img src="images/alooparatha.jpg" alt="Aloo Paratha">
+        <h3>Aloo Paratha</h3>
+        <p>Stuffed potato paratha served with curd & pickle.</p>
+        <a href="order.html" class="order-btn">Order Now</a>
+
+      </div>
+
+            <div class="menu-card">
+        <img src="images/poha.jpg" alt="Poha">
+        <h3>Poha</h3>
+        <p>Flattened rice seasoned with mustard, onion, and lemon.</p>
+        <a href="order.html" class="order-btn">Order Now</a>
+
+      </div>
+
+            <div class="menu-card">
+        <img src="images/upma.jpg" alt="Upma">
+        <h3>Upma</h3>
+        <p>South Indian savory semolina breakfast.</p>
+        <a href="order.html" class="order-btn">Order Now</a>
+
+      </div>
+
+            <div class="menu-card">
+        <img src="images/idli-sambar.jpg" alt="Idli Sambar">
+        <h3>Idli Sambar</h3>
+        <p>Soft idlis served with spicy sambar and chutney.</p>
+        <a href="order.html" class="order-btn">Order Now</a>
+      </div>
+    </div>
+  </section>
+
+ <script>
+function loadMeals() {
+  fetch("http://localhost/healthybox/backend/meals/getMeals.php")
+    .then(res => res.json())
+    .then(data => {
+      const container = document.querySelector(".menu-container");
+      container.innerHTML = ""; // pehle sab clear
+
+      data.data.forEach(meal => {
+        const card = document.createElement("div");
+        card.className = "menu-card";
+        card.setAttribute("data-category", meal.category);
+        card.innerHTML = `
+          <img src="${meal.image}" alt="${meal.name}">
+          <h3>${meal.name}</h3>
+          <p>${meal.description}</p>
+          <span>₹${meal.price}</span>
+          <a href="order.html" class="order-btn">Order Now</a>
+        `;
+        container.appendChild(card);
+      });
+    })
+    .catch(err => console.error("Error loading meals:", err));
+}
+
+// Call function on page load
+window.onload = loadMeals;
+
+</script>
+
+</body>
+
+</html> 
+
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HealthyBox – Menu</title>
+  <link rel="stylesheet" href="css/menu.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    .filter-buttons {
+      text-align: center;
+      margin: 20px;
+    }
+    .filter-buttons button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 16px;
+      background: #ff6b35;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .filter-buttons button:hover {
+      background: #e65c25;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="navbar">
+    <div class="logo">HealthyBox</div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="plans.html">Plans</a>
+      <a href="order.html">Order</a>
+      <a href="track.html">Track</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="filter-buttons">
+    <button onclick="filterMeals('all')">Show All</button>
+    <button onclick="filterMeals('veg')">Veg</button>
+    <button onclick="filterMeals('non-veg')">Non-Veg</button>
+  </div>
+
+  <section class="menu-section">
+    <h2 class="section-title">Our Delicious Menu</h2>
+    <div class="menu-container">
+      <div class="menu-card" data-category="veg">
+        <img src="images/rajma-chawal.jpg" alt="Rajma Chawal">
+        <h3>Rajma Chawal</h3>
+        <p>Authentic Punjabi-style rajma with steamed rice.</p>
+        <a href="order.html" class="order-btn">Order Now</a>
+      </div>
+
+      <div class="menu-card" data-category="veg">
+        <img src="images/kadhi-rice.jpg" alt="Kadhi Rice">
+        <h3>Kadhi Rice</h3>
+        <p>Light, tangy kadhi paired with fluffy rice.</p>
+        <a href="order.html" class="order-btn">Order Now</a>
+      </div>
+
+      <div class="menu-card" data-category="veg">
+        <img src="images/chole-puri.jpg" alt="Chole Puri">
+        <h3>Chole Puri</h3>
+        <p>Spicy chickpeas with crispy puffed puris.</p>
+        <a href="order.html" class="order-btn">Order Now</a>
+      </div>
+
+      <div class="menu-card" data-category="veg">
+        <img src="images/palak-paneer.jpg" alt="Palak Paneer">
+        <h3>Palak Paneer</h3>
+        <p>Cottage cheese cooked in spinach gravy.</p>
+        <a href="order.html" class="order-btn">Order Now</a>
+      </div>
+
+      <div class="menu-card" data-category="veg">
+        <img src="images/mixed-veg.jpg" alt="Mixed Veg">
+        <h3>Mixed Veg</h3>
+        <p>A healthy mix of seasonal vegetables in gravy.</p>
+        <a href="order.html" class="order-btn">Order Now</a>
+      </div>
+
+      <div class="menu-card" data-category="veg">
+        <img src="images/dal-fry.jpg" alt="Dal Fry">
+        <h3>Dal Fry</h3>
+        <p>Yellow lentils tempered with garlic and spices.</p>
+        <a href="order.html" class="order-btn">Order Now</a>
+      </div>
+
+      <div class="menu-card" data-category="veg">
+        <img src="images/alooparatha.jpg" alt="Aloo Paratha">
+        <h3>Aloo Paratha</h3>
+        <p>Stuffed potato paratha served with curd & pickle.</p>
+        <a href="order.html" class="order-btn">Order Now</a>
+      </div>
+
+      <div class="menu-card" data-category="veg">
+        <img src="images/poha.jpg" alt="Poha">
+        <h3>Poha</h3>
+        <p>Flattened rice seasoned with mustard, onion, and lemon.</p>
+        <a href="order.html" class="order-btn">Order Now</a>
+      </div>
+
+      <div class="menu-card" data-category="veg">
+        <img src="images/upma.jpg" alt="Upma">
+        <h3>Upma</h3>
+        <p>South Indian savory semolina breakfast.</p>
+        <a href="order.html" class="order-btn">Order Now</a>
+      </div>
+
+      <div class="menu-card" data-category="veg">
+        <img src="images/idli-sambar.jpg" alt="Idli Sambar">
+        <h3>Idli Sambar</h3>
+        <p>Soft idlis served with spicy sambar and chutney.</p>
+        <a href="order.html" class="order-btn">Order Now</a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function filterMeals(category) {
+      const cards = document.querySelectorAll(".menu-card");
+      cards.forEach(card => {
+        const type = card.getAttribute("data-category");
+        if (category === "all" || type === category) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+  </script>
+
+</body>
+
+</html> 
+
+
+
+
+
+
+
