@@ -7,7 +7,7 @@ $data = json_decode(file_get_contents("php://input"), true);
 $Name = $data["name"] ?? "";
 $password = $data["password"] ?? "";
 
-if ($phone == "" || $password == "") {
+if ($phone == "" || $password =="") {
   echo json_encode(["status" => "error", "message" => "Phone & Password required"]);
   exit;
 }
